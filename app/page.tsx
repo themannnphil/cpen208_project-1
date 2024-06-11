@@ -1,6 +1,6 @@
 
 
-export default function Home() {
+export default function Home() { 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 text-center">
      
@@ -18,9 +18,13 @@ export default function Home() {
             </div>
             <div className="w-70 flex items-center  mb-12 ">
               <input type="password" name="pin" placeholder="Student Pin" className="outline-none flex-1 rounded-xl px-8 py-3 text-black"/>
-            </div>
+            </div> 
+              {/* The link below is to the 404 error */}
+              <a href="/404page" className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-black mb-8">Sign In</a>
+              <a href="./register" className="text font-semibold text-gray-40  0 inline-block ">
+                New User?Register here <span aria-hidden="true">&rarr;</span>
+              </a>
             
-            <a href="#" className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-black mb-8">Sign In</a>
 
          </div>
         </div>
