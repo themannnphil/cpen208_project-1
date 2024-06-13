@@ -7,7 +7,9 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
+    extend:
+    {
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -18,3 +20,4 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+// I am using a framework built ontop on Tailwind to ease my styling.
