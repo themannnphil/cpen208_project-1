@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+```sql CREATE TABLE cpen.tbl_students
+(
+    id integer NOT NULL,
+    f_name "char" NOT NULL,
+    l_name "char" NOT NULL,
+    date_of_birth date NOT NULL,
+    contact_number numeric(10) NOT NULL,
+    outstanding_fees bigint NOT NULL,
+    gender "char" NOT NULL,
+    PRIMARY KEY (id)
+);
 
-## Getting Started
+ALTER TABLE IF EXISTS cpen.tbl_students
+    OWNER to postgres;
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+COMMENT ON TABLE cpen.tbl_students
+    IS 'This table contains info or personal details  about the students of Cpen';
 ```
+My Function to calculate fees
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sql 
+CREATE OR REPLACE FUNCTION cpen.outstanding_fees()
+RETURNS json[]
+LANGUAGE 'plpgsql'
+COST 100
+VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    result json[];
+BEGIN
+    SELECT array_agg(
+        json_build_object(
+            'student_id', sub.student_id, 
+			'Student_name', sub.f_name || ' '|| sub.l_name,
+            'outstanding_fees', COALESCE(sub.total_fees, 0) - COALESCE(sub.total_paid, 0)
+        )
+    ) INTO result
+    FROM (
+        SELECT 
+            s.id AS student_id,
+			s.f_name AS f_name,
+			s.l_name AS l_name,
+		
+            SUM(f.fees) AS total_fees,
+            SUM(f.paid_amount) AS total_paid
+        FROM cpen.tbl_students s
+        LEFT JOIN cpen.tbl_fees f ON s.id = f.student_id
+        GROUP BY s.id
+    ) sub;
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    RETURN result;
+END;
+$BODY$;
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ALTER FUNCTION cpen.outstanding_fees()
+OWNER TO postgres;
 
-## Learn More
+ SELECT * FROM cpen.outstanding_fees();
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
