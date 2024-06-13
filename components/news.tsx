@@ -14,7 +14,7 @@ interface NewsFeedProps {
 
 const NewsFeed: React.FC<NewsFeedProps> = ({ articles }) => {
   return (
-    <div className="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
+    <div className="z-20 w-full max-w-5xl ml-3">
       <h2 className="text-2xl font-bold mb-6">News Feed</h2>
       {articles.length === 0 ? (
         <p className="text-gray-500">No news articles available.</p>
