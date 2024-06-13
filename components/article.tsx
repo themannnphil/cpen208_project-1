@@ -1,17 +1,26 @@
-// components/ArticleCard.js
+// components/article.tsx
 import React from 'react';
-interface articles {
-    title: string;
-    description: string;
-    url: string;
-  }
 
-export default function ArticleCard({ article }) {
+interface Article {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+}
+
+interface ArticleCardProps {
+  article: Article;
+}
+
+const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md mb-4">
-      <h3 className="text-lg font-semibold">{article.title}</h3>
-      <p className="text-gray-600">{article.date}</p>
-      <p className="text-gray-500">{article.summary}</p>
+    <div className="mb-4">
+      <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <h3 className="text-lg font-semibold">{article.title}</h3>
+      </a>
+      <p className="text-gray-700">{article.description}</p>
     </div>
   );
 }
+
+export default ArticleCard;
