@@ -1,0 +1,5 @@
+CREATE FUNCTION cpen.generate_random_number() RETURNS INTEGER AS $$
+BEGIN
+    RETURN FLOOR(RANDOM() * 19999999) + 10000000;
+END;
+$$ LANGUAGE plpgsql;

@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  fname String
+  lname String
+  studentId Int  @default(dbgenerated("generate_random_number()"))
+  password    String?
+  createdAt DateTime @default(now())
+  updatedAT DateTime @updatedAt
+}
+// anytime you update a model that what will be created in the data base so you  have to run this command after
+// To map your data model to the database schema, you need to use the prisma migrate CLI commands:
+// // npx prisma migrate dev --name init
+// Whenever you update your Prisma schema, you will have to update your database schema using either npx prisma migrate dev or npx prisma db push. This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.y

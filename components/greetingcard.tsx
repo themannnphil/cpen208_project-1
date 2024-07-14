@@ -1,6 +1,6 @@
 // components/GreetingCard.js
 import React from 'react'; 
-import image from "@/public/vercel.svg";
+
 
 interface GreetingCardProps {
   name: string;

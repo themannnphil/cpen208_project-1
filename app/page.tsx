@@ -1,42 +1,58 @@
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import Uglogo from '@/components/uglogo';
+import { Check } from 'lucide-react';
 
 
-export default function Home() { 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 text-center">
-     
-      <div className="z-20 w-full max-w-5xl items-center justify-center   lg:flex">
-        
-        <div className="rounded-2xl  bg-red w-2/3 max-w-4xl fixed left-0 top-0  border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 py-24">
-          <p className="text-left  font-bold mb-12">
-            CPEN DEPARMENT <span className="font-bold text-2xl font-mono">.SES</span>
-          </p>
-          
-         <div className="flex flex-col items-center">
-           <p className="text-3xl font-bold mb-8 mx-10">Welcome Back!  Sign In</p>
-            <div className="w-70 flex items-center  mb-8 ">
-              <input type="number" name="id" placeholder="Student ID" className="outline-none flex-1 rounded-xl px-8 py-3 text-black" maxLength={8}/>
+export default function Home() {
+    return(
+  <div className="">
+    <section>
+    <MaxWidthWrapper className='pb-24 pt-10 lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pt-24 xl:pt-32 lg:pb-52'>
+          <div className='col-span-2 px-6 lg:px-0 lg:pt-4'>
+            <div className='relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start'>
+              <div className='absolute w-24 left-0 -top-10 hidden lg:block'>
+                <div className='absolute inset-x-0 bottom-0' />
+                {/* <img src='/uglogo.png' className='w-full mt-6 ' /> */}
+              </div>
+              <h1 className='relative w-fit tracking-tight text-balance mt-2 font-bold  !leading-tight  text-gray-200 text-5xl md:text-6xl lg:text-7xl'>
+                School of  {' '}
+                <span className='bg-blue-950 px-2 text-white'>Engineering</span>{' '}
+                Sciences                
+              </h1>
+              <p className='mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap'>
+              Streamline Your Education Journey - Register and Access Courses Today!,{' '}
+                <span className='font-semibold'>Simplify</span> your education journey with our user-friendly platform.
+                
+              </p>
+              <ul className='mt-8 space-y-2 text-left font-medium flex flex-col items-center sm:items-start'>
+                <div className='space-y-2'>
+                  <li className='flex gap-1.5 items-center text-left'>
+                    <Check className='h-5 w-5 shrink-0 text-blue-600' />
+                    Seamless Registration: Sign up in minutes and start exploring courses right away.
+                  </li>
+                  <li className='flex gap-1.5 items-center text-left'>
+                    <Check className='h-5 w-5 shrink-0 text-blue-600' />Extensive Course Catalog: Discover a wide range of subjects to meet your academic goals.
+                  </li>
+                  <li className='flex gap-1.5 items-center text-left'>
+                    <Check className='h-5 w-5 shrink-0 text-blue-600' />
+                    Flexible Learning: Access course materials and complete assignments at your own pace.
+                  </li>
+                  <li className='flex gap-1.5 items-center text-left'>
+                    <Check className='h-5 w-5 shrink-0 text-blue-600' />
+                    Track Your Progress: Monitor your grades and stay on top of deadlines with ease.
+                  </li>
+                  <li className='flex gap-1.5 items-center text-left'>
+                    <Check className='h-5 w-5 shrink-0 text-blue-600' />
+                    Mobile-Friendly: Learn on the go with our convenient mobile app (optional, if applicable).
+                  </li>
+                </div>
+              </ul>
             </div>
-            <div className="w-70 flex items-center  mb-12 ">
-              <input type="password" name="pin" placeholder="Student Pin" className="outline-none flex-1 rounded-xl px-8 py-3 text-black"/>
-            </div> 
-              {/* The link below is to the 404 error */}
-              <a href="#" className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-black mb-8">Sign In</a>
-              <a href="./register" className="text font-semibold text-gray-40  0 inline-block ">
-                New User?Register here <span aria-hidden="true">&rarr;</span>
-              </a>
-            
+          </div>
 
-         </div>
-        </div>
-        
-      </div>
-     
+      <Uglogo className='w-90 lg:-ml-5 lg:mt-5' imgSrc='' />
+      </MaxWidthWrapper> {/* ReUsable component to use  across the project */}
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        
-      </div>
-
-     
-    </main>
-  );
+    </section>
+  </div>)
 }
