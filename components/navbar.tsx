@@ -34,17 +34,17 @@ const NavBar = () => {
                         </>
                     ) : (
                         <>
-                            {/* if user is logged in I will aloow for this to show, A react Fragment that allows for multiple children    */}
+                            {/* if user is logged in I will aloow for this to show, A react Fragment that allows for multiple children   
                             <Link href='/api/auth/register' className={buttonVariants({
                                     size:'sm', variant : 'ghost', 
                             })}>
                                     Register
                             </Link> {/* //if user is logged in we will offer an option to log out */} 
-                            <Link href='/api/auth/signin' className={buttonVariants({
+                            {/* <Link href='/api/auth/signin' className={buttonVariants({
                                     size:'sm', variant : 'ghost', 
                             })}>
                                     Sign In <ArrowRight className="ml-1.5 h-5 w-5"/>
-                            </Link> 
+                            </Link>  */} 
                                                       
                         </>)
                 }
