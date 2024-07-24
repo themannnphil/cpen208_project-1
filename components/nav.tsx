@@ -9,9 +9,9 @@ import logo from "@/public/vercel.svg"
 const navigation = [
   { name: 'DashBoard', href: '#', current: true},
   { name: 'Fees', href: '#', current: false },
-  { name: 'Courses', href: '#', current: false },
+  { name: 'Courses', href: 'course', current: false },
   { name: 'Calendar', href: '#', current: false },
-  { name: 'Resources', href: '#', current: false  },
+  { name: 'Resources', href: '#', current: false  }
 ];
 
 function classNames(...classes: string[]): string {
@@ -21,6 +21,7 @@ function classNames(...classes: string[]): string {
 export default function Example() {
   return (
     <Disclosure as="nav" className="rounded-2xl  bg-red   fixed left-0 top-0  border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 py-2400">
+      
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -138,6 +139,7 @@ export default function Example() {
                               Sign out
                             </a>
                           </Link>
+
                         )}
                       </Menu.Item>
                     </Menu.Items>

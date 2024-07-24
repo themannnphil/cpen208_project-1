@@ -2,8 +2,13 @@ import Link from "next/link"
 import MaxWidthWrapper from "./MaxWidthWrapper"
 import { buttonVariants } from "./ui/button"
 import { ArrowRight } from "lucide-react"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import UserAccountNav from '@/components/UserAccountNav'
 
-const NavBar = () => {
+const NavBar = async() => {
+    
+const session = await getServerSession(authOptions);
     const user = undefined
     const isAdmin = false
     return(
@@ -15,36 +20,21 @@ const NavBar = () => {
                 </Link>
                 <div className="h-14 items-center space-x-1 py-2 ">
                     {/* I will do a conditoinal chec here basede on login state of users */}
-                    {user ? (
-                        <>
-                         {/* if user is logged in I will aloow for this to show, A react Fragment that allows for multiple children    */}
-                        <Link href='/api/auth/logout' className={buttonVariants({
-                            size:'sm', variant : 'ghost', 
-                        })}>SignOut
-                        </Link> {/* //if user is logged in we will offer an option to log out */}
-                        {isAdmin ? 
-                        (<Link href='/api/auth/logout' className={buttonVariants({
-                            size:'sm', variant : 'ghost', 
-                        })}>DashBoard
-                        </Link> ): null }
-                        <Link href='/api/auth/signin' className={buttonVariants({
-                             size:'sm', className :'hidden sm:flex items-center gap-1 '
-                        })}>LogIn <ArrowRight className="ml-1.5 h-5 w-5"/>
-                        </Link> 
-                        </>
+                    {session?.user ? (                       
+                       <UserAccountNav />        
                     ) : (
                         <>
-                            {/* if user is logged in I will aloow for this to show, A react Fragment that allows for multiple children   
+                            {/* if user is logged in I will aloow for this to show, A react Fragment that allows for multiple children    */}
                             <Link href='/api/auth/register' className={buttonVariants({
                                     size:'sm', variant : 'ghost', 
                             })}>
                                     Register
                             </Link> {/* //if user is logged in we will offer an option to log out */} 
-                            {/* <Link href='/api/auth/signin' className={buttonVariants({
+                            <Link href='/api/auth/signin' className={buttonVariants({
                                     size:'sm', variant : 'ghost', 
                             })}>
                                     Sign In <ArrowRight className="ml-1.5 h-5 w-5"/>
-                            </Link>  */} 
+                            </Link>  
                                                       
                         </>)
                 }
